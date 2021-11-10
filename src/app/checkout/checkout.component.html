@@ -1,0 +1,63 @@
+<div class="item-div" *ngIf="show">
+    <h5>Shopping Cart</h5>
+    <div class="row">
+        <div class="col-12" >
+            <div class="added-item"  *ngFor="let addedItem of addedItem;let i=index">
+                <div class="img">
+                    <img [src] ="addedItem.img" [alt]="addedItem.shoesTitle">
+                </div>
+                <div class="content">
+                    <p>{{addedItem.shoesTitle}}</p>
+                    <p style="color: red;">{{addedItem.price}}</p>
+                    <div class="btn">
+                        <button type="button" class="btn btn-danger" (click) ="delete(i)">Remove</button>
+                    </div>
+                </div>  
+            </div>
+            <button type="button" class="btn btn-success" style="width: 100%;" (click)="open(content)">Checkout</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title"id="modal-basic-title">Proceed To Pay</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">
+				×
+			</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<!-- <div class="added-item"  *ngFor="let addedItem of addedItem;let i=index">
+            <div class="img">
+                <img [src] ="addedItem.img" [alt]="addedItem.shoesTitle">
+            </div>
+            <div class="content">
+                <p>{{addedItem.shoesTitle}}</p>
+                <p style="color: red;">{{addedItem.price}}</p>
+                <div class="btn">
+                    <button type="button" class="btn btn-danger" (click) ="delete(i)">Remove</button>
+                </div>
+            </div>  
+        </div> -->
+        <div class="ltem-list" *ngFor="let addedItem of addedItem;let i=index">
+            <div class="img">
+                <img [src] ="addedItem.img" [alt]="addedItem.shoesTitle">
+            </div>
+            <div class="title">
+                <p>{{addedItem.shoesTitle}}</p>
+            </div>
+            <div class="price">
+                <p style="color: red;">{{addedItem.price}}</p>
+            </div>
+        </div>
+        <div class="total">
+            <p>Total Price : <b>{{totalPrice}}</b></p>
+        </div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+	</div>
+</ng-template>
+
